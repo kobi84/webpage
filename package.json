@@ -1,0 +1,45 @@
+{
+  "name": "webpage",
+  "version": "0.0.1",
+  "description": "Personal webpage",
+  "main": "main.js",
+  "scripts": {
+    "gulp": "node_modules/gulp/bin/gulp.js",
+    "gulp-cli": "node_modules/gulp-cli/bin/gulp.js",
+    "start-dev": "gulp start-dev",
+    "build-dev": "gulp build-dev",
+    "build-prod": "gulp build-prod"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kobi84/webpage.git"
+  },
+  "keywords": [
+    "web",
+    "page",
+    "personal"
+  ],
+  "author": "Tomasz Kobiela",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/kobi84/webpage/issues"
+  },
+  "homepage": "https://github.com/kobi84/webpage#readme",
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.3.0",
+    "gulp-connect": "^5.7.0",
+    "gulp-csso": "^4.0.1",
+    "gulp-sass": "^4.1.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-util": "^3.0.8",
+    "node-sass": "^4.14.1"
+  },
+  "dependencies": {
+    "gulp-htmlmin": "^5.0.1"
+  }
+}

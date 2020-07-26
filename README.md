@@ -1,2 +1,2 @@
 # webpage
-Personal webpage
+Personal webpage for tomaszkobiela.net
