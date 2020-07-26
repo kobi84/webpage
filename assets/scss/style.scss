@@ -15,10 +15,8 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    padding: 0px;
-    margin: 0px;
-    font-family: URW Gothic L, Lucida Grande, Lucida Sans Unicode,
-      Helvetica Neue, Sans;
+    font-family: 'URW Gothic L', 'Lucida Grande', 'Lucida Sans Unicode',
+      'Helvetica Neue', 'Sans', sans-serif;
     color: white;
     opacity: 0;
     transition: opacity 0.5s linear;

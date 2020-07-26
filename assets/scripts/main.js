@@ -33,5 +33,5 @@ function documentReady(func) {
     func.call();
   } else {
     document.addEventListener('DOMContentLoaded', func);
-  }  
+  }
 }

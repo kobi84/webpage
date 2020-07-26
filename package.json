@@ -8,7 +8,16 @@
     "gulp-cli": "node_modules/gulp-cli/bin/gulp.js",
     "start-dev": "gulp start-dev",
     "build-dev": "gulp build-dev",
-    "build-prod": "gulp build-prod"
+    "build-prod": "gulp build-prod",
+    "prettier-check": "node_modules/prettier/bin-prettier.js --check .",
+    "eslint": "node_modules/eslint/bin/eslint.js .",
+    "stylelint": "node_modules/stylelint/bin/stylelint.js \"assets/**/*.scss\"",
+    "a11y": "node_modules/a11y/cli.js './*.html'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run eslint && npm run stylelint"
+    }
   },
   "repository": {
     "type": "git",
@@ -28,6 +37,14 @@
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
+    "a11y": "^0.5.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
@@ -37,7 +54,13 @@
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
-    "node-sass": "^4.14.1"
+    "husky": "^4.2.5",
+    "node-sass": "^4.14.1",
+    "prettier": "2.0.5",
+    "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-scss": "^3.18.0"
   },
   "dependencies": {
     "gulp-htmlmin": "^5.0.1"

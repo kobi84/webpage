@@ -12,26 +12,26 @@ sass.compiler = require('node-sass');
 
 let production = false;
 
-//Set enviroment mode for production
+// Set enviroment mode for production
 gulp.task('production', (done) => {
   production = true;
   done();
 });
 
-//Set enviroment mode for development
+// Set enviroment mode for development
 gulp.task('development', (done) => {
   production = false;
   done();
 });
 
-//Remove all files from distrib dir
+// Remove all files from distrib dir
 gulp.task('clean-distrib', function () {
   return gulp
     .src('./distrib/', { read: false, allowEmpty: true })
     .pipe(clean());
 });
 
-//Compile sass file and put them in distrib dir
+// Compile sass file and put them in distrib dir
 gulp.task('sass', () => {
   return gulp
     .src('./assets/scss/**/*.scss')
@@ -41,13 +41,13 @@ gulp.task('sass', () => {
     .pipe(production ? util.noop() : connect.reload());
 });
 
-//Transpile js files with babel and put them in distrib dir
+// Transpile js files with babel and put them in distrib dir
 gulp.task('js', () => {
   return gulp
     .src('./assets/scripts/**/*.js')
     .pipe(
       babel({
-        presets: ['@babel/env'],
+        presets: ['@babel/env']
       })
     )
     .pipe(production ? uglify() : util.noop())
@@ -55,7 +55,7 @@ gulp.task('js', () => {
     .pipe(production ? util.noop() : connect.reload());
 });
 
-//Copy html files to distrib dir
+// Copy html files to distrib dir
 gulp.task('copy-html', () => {
   return gulp
     .src('./*.html')
@@ -68,7 +68,7 @@ gulp.task('copy-html', () => {
     .pipe(production ? util.noop() : connect.reload());
 });
 
-//Copy fonts files to distrib dir
+// Copy fonts files to distrib dir
 gulp.task('copy-fonts', () => {
   return gulp
     .src('./assets/fonts/**/*')
@@ -77,7 +77,7 @@ gulp.task('copy-fonts', () => {
     .pipe(production ? util.noop() : connect.reload());
 });
 
-//Copy images files to distrib dir
+// Copy images files to distrib dir
 gulp.task('copy-img', () => {
   return gulp
     .src('./assets/img/**/*')
@@ -85,7 +85,7 @@ gulp.task('copy-img', () => {
     .pipe(production ? util.noop() : connect.reload());
 });
 
-//Copy external css files to distrib dir
+// Copy external css files to distrib dir
 gulp.task('copy-css', () => {
   return gulp
     .src('./assets/css/**/*')
@@ -94,7 +94,7 @@ gulp.task('copy-css', () => {
     .pipe(connect.reload());
 });
 
-//Build dev version of page
+// Build dev version of page
 gulp.task(
   'build-dev',
   gulp.series([
@@ -109,7 +109,7 @@ gulp.task(
   ])
 );
 
-//Build production version of page
+// Build production version of page
 gulp.task(
   'build-prod',
   gulp.series([
@@ -124,7 +124,7 @@ gulp.task(
   ])
 );
 
-//Live server tasks
+// Live server tasks
 gulp.task('serve', () => {
   return connect.server({ root: 'distrib', livereload: true });
 });
