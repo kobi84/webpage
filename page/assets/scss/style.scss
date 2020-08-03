@@ -1,0 +1,125 @@
+@import 'fonts';
+
+html {
+  background: black;
+
+  &,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: auto;
+    color: white;
+  }
+
+  body {
+    @extend .regular-font-light;
+
+    background: black no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    div,
+    p {
+      padding: 0;
+      margin: 0;
+    }
+
+    #wrapper {
+      height: 100%;
+      width: 100%;
+
+      section {
+        opacity: 0;
+        transition: opacity 0.5s linear;
+        height: 100%;
+        width: 100%;
+
+        .content-container {
+          text-align: center;
+          margin: 0 auto;
+          width: 100%;
+          background-color: white;
+
+          article {
+            color: #373737;
+            margin: 50px;
+            width: 900px;
+          }
+        }
+      }
+
+      #starter {
+        height: 100%;
+
+        #quote {
+          @extend .black-bold-font;
+
+          font-size: 3rem;
+          width: 50%;
+          text-align: justify;
+          line-height: 4rem;
+        }
+
+        #author {
+          font-size: 1.1rem;
+          width: 50%;
+          padding-top: 10px;
+          text-align: right;
+        }
+      }
+
+      #contact {
+        .content-container {
+          background-color: #171717;
+
+          article {
+            color: white;
+          }
+        }
+      }
+    }
+
+    .noScript {
+      text-align: center;
+      margin-top: 20%;
+    }
+  }
+}
+
+#menu-icon {
+  visibility: hidden;
+  opacity: 0;
+  color: white;
+  font-size: 32px;
+  transition: all 0.25s linear;
+  position: fixed;
+  top: 25px;
+  left: 25px;
+}
+
+#menu-icon:hover {
+  font-size: 34px;
+}
+
+.base-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-content {
+  @extend .base-content;
+
+  justify-content: center;
+}
+
+.bottom-content {
+  @extend .base-content;
+
+  justify-content: flex-end;
+}
+
+

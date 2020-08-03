@@ -1,7 +1,7 @@
 {
-  "name": "webpage",
-  "version": "0.0.1",
-  "description": "Personal webpage",
+  "name": "simple-page-template",
+  "version": "1.0.0",
+  "description": "Simple webpage template",
   "main": "main.js",
   "scripts": {
     "gulp": "node_modules/gulp/bin/gulp.js",
@@ -12,8 +12,8 @@
     "prettier-check": "node_modules/prettier/bin-prettier.js --check .",
     "prettier": "node_modules/prettier/bin-prettier.js --write .",
     "eslint": "node_modules/eslint/bin/eslint.js .",
-    "stylelint": "node_modules/stylelint/bin/stylelint.js \"assets/**/*.scss\"",
-    "a11y": "node_modules/a11y/cli.js './*.html'"
+    "stylelint": "node_modules/stylelint/bin/stylelint.js \"page/assets/**/*.scss\"",
+    "a11y": "node_modules/a11y/cli.js 'page/*.html'"
   },
   "husky": {
     "hooks": {
@@ -22,19 +22,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kobi84/webpage.git"
+    "url": "git+https://github.com/kobi84/simple-page-template.git"
   },
   "keywords": [
     "web",
     "page",
-    "personal"
+    "template"
   ],
   "author": "Tomasz Kobiela",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kobi84/webpage/issues"
+    "url": "https://github.com/kobi84/simple-page-template/issues"
   },
-  "homepage": "https://github.com/kobi84/webpage#readme",
+  "homepage": "https://github.com/kobi84/simple-page-template#readme",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
@@ -55,6 +55,7 @@
     "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
+    "gulp-htmlmin": "^5.0.1",
     "husky": "^4.2.5",
     "node-sass": "^4.14.1",
     "prettier": "2.0.5",
@@ -62,8 +63,5 @@
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-scss": "^3.18.0"
-  },
-  "dependencies": {
-    "gulp-htmlmin": "^5.0.1"
   }
 }

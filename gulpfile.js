@@ -10,6 +10,12 @@ const csso = require('gulp-csso');
 
 sass.compiler = require('node-sass');
 
+const pagePath = 'page';
+const assetsPath = `${pagePath}/assets`;
+
+const distribPath = 'distrib';
+const distAssetsPath = `${distribPath}/assets`;
+
 let production = false;
 
 // Set enviroment mode for production
@@ -26,37 +32,37 @@ gulp.task('development', (done) => {
 
 // Remove all files from distrib dir
 gulp.task('clean-distrib', function () {
-  return gulp.src('./distrib/', { read: false, allowEmpty: true }).pipe(clean());
+  return gulp.src(`${distribPath}/`, { read: false, allowEmpty: true }).pipe(clean());
 });
 
 // Compile sass file and put them in distrib dir
 gulp.task('sass', () => {
   return gulp
-    .src('./assets/scss/**/*.scss')
+    .src(`${assetsPath}/scss/**/*.scss`)
     .pipe(sass().on('error', sass.logError))
     .pipe(production ? csso() : util.noop())
-    .pipe(gulp.dest('./distrib/assets/css'))
+    .pipe(gulp.dest(`${distAssetsPath}/css`))
     .pipe(production ? util.noop() : connect.reload());
 });
 
 // Transpile js files with babel and put them in distrib dir
 gulp.task('js', () => {
   return gulp
-    .src('./assets/scripts/**/*.js')
+    .src(`${assetsPath}/scripts/**/*.js`)
     .pipe(
       babel({
         presets: ['@babel/env'],
       })
     )
     .pipe(production ? uglify() : util.noop())
-    .pipe(gulp.dest('./distrib/assets/scripts'))
+    .pipe(gulp.dest(`${distAssetsPath}/scripts`))
     .pipe(production ? util.noop() : connect.reload());
 });
 
 // Copy html files to distrib dir
 gulp.task('copy-html', () => {
   return gulp
-    .src('./*.html')
+    .src(`${pagePath}/*.html`)
     .pipe(
       production
         ? htmlmin({
@@ -66,15 +72,15 @@ gulp.task('copy-html', () => {
           })
         : util.noop()
     )
-    .pipe(gulp.dest('./distrib/'))
+    .pipe(gulp.dest(`${distribPath}/`))
     .pipe(production ? util.noop() : connect.reload());
 });
 
 // Copy fonts files to distrib dir
 gulp.task('copy-fonts', () => {
   return gulp
-    .src('./assets/fonts/**/*')
-    .pipe(gulp.dest('./distrib/assets/fonts'))
+    .src(`${assetsPath}/fonts/**/*`)
+    .pipe(gulp.dest(`${distAssetsPath}/fonts`))
 
     .pipe(production ? util.noop() : connect.reload());
 });
@@ -82,17 +88,17 @@ gulp.task('copy-fonts', () => {
 // Copy images files to distrib dir
 gulp.task('copy-img', () => {
   return gulp
-    .src('./assets/img/**/*')
-    .pipe(gulp.dest('./distrib/assets/img'))
+    .src(`${assetsPath}/img/**/*`)
+    .pipe(gulp.dest(`${distAssetsPath}/img`))
     .pipe(production ? util.noop() : connect.reload());
 });
 
 // Copy external css files to distrib dir
 gulp.task('copy-css', () => {
   return gulp
-    .src('./assets/css/**/*')
+    .src(`${assetsPath}/css/**/*`)
     .pipe(production ? csso() : util.noop())
-    .pipe(gulp.dest('./distrib/assets/css'))
+    .pipe(gulp.dest(`${distAssetsPath}/css`))
     .pipe(connect.reload());
 });
 
@@ -110,16 +116,16 @@ gulp.task(
 
 // Live server tasks
 gulp.task('serve', () => {
-  return connect.server({ root: 'distrib', livereload: true });
+  return connect.server({ root: `${distribPath}`, livereload: true });
 });
 
 gulp.task('watch', () => {
-  gulp.watch('./*.html', gulp.series('copy-html'));
-  gulp.watch('./assets/scripts/**/*.js', gulp.series('js'));
-  gulp.watch('./assets/scss/**/*.scss', gulp.series('sass'));
-  gulp.watch('./assets/fonts/**/*', gulp.series('copy-fonts'));
-  gulp.watch('./assets/img/**/*', gulp.series('copy-img'));
-  gulp.watch('./assets/css/**/*', gulp.series('copy-css'));
+  gulp.watch(`${pagePath}/*.html`, gulp.series('copy-html'));
+  gulp.watch(`${assetsPath}/scripts/**/*.js`, gulp.series('js'));
+  gulp.watch(`${assetsPath}/scss/**/*.scss`, gulp.series('sass'));
+  gulp.watch(`${assetsPath}/fonts/**/*`, gulp.series('copy-fonts'));
+  gulp.watch(`${assetsPath}/img/**/*`, gulp.series('copy-img'));
+  gulp.watch(`${assetsPath}/css/**/*`, gulp.series('copy-css'));
 });
 
 gulp.task('start-dev', gulp.series('development', 'clean-distrib', 'build-dev', gulp.parallel(['watch', 'serve'])));

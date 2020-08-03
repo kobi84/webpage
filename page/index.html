@@ -2,7 +2,7 @@
 <html lang="pl">
   <head>
     <title>Tomasz Kobiela</title>
-    <meta name="author" content="Tomasz Kobiela" />
+    <meta name="author" content="Tomasz Kobiela - Frontend Developer" />
     <meta name="copyright" content="Tomasz Kobiela" />
     <meta name="keywords" content="" />
     <meta name="description" content="Strona osobista" />
@@ -98,23 +98,54 @@
     </style>
   </head>
   <body>
-    <div id="wrapper">
-      <noscript>
-        <div class="noScript">
-          <p>
-            Do działa tej strony wymagana jest obsługa JavaScript. Włącz obsługę JavaScript w swojej przeglądrace lub
-            wyłącz dla tej strony wtyczki blokujące JavaScript.
-          </p>
+    <noscript>
+      <div class="noScript">
+        <p>
+          This page needs JS to live! Please enable it to feed this page!
+        </p>
+      </div>
+    </noscript>
+    <main id="wrapper">
+      <div id="menu-icon" class="las la-bars"></div>
+      <section id="starter" class="center-content">
+        <p id="quote">“There is never a second opportunity to make a first impression.”</p>
+        <p id="author">Andrzej Sapkowski</p>
+      </section>
+      <section id="about-me" class="center-content">
+        <div class="content-container">
+          <article>
+            <header>About me</header>
+          </article>
         </div>
-      </noscript>
-    </div>
-    <i id="menu-icon" class="las la-bars"></i>
-    <div id="loader">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
+      </section>
+      <section id="skills" class="center-content">
+        <div class="content-container">
+          <article>
+            <header>Skills</header>
+          </article>
+        </div>
+      </section>
+      <section id="portfolio" class="center-content">
+        <div class="content-container">
+          <article>
+            <header>Portfolio</header>
+          </article>
+        </div>
+      </section>
+      <section id="contact" class="bottom-content">
+        <div class="content-container">
+          <article>
+            <header>Contact</header>
+          </article>
+        </div>
+      </section>
+      <div id="loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </main>
     <img id="bgImg" src="assets/img/background.jpeg" style="display: none;" alt="Green trees on mountain with fog" />
   </body>
 </html>
