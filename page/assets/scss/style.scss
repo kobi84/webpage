@@ -36,12 +36,23 @@ html {
       #menu-icon {
         visibility: hidden;
         opacity: 0;
-        color: white;
+        color: #171717;
         font-size: 32px;
         position: fixed;
         top: 25px;
         left: 25px;
         z-index: 10;
+        background-color: white;
+        border-radius: 25px;
+        padding: 5px;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
+
+        &.clicked {
+          color: white;
+          background-color: transparent;
+          box-shadow: none;
+          border-radius: 0;
+        }
       }
 
       #menu-icon:hover {
@@ -59,6 +70,11 @@ html {
         overflow: hidden;
         transition: 500ms;
         z-index: 9;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
+
+        &.opened {
+          width: 350px;
+        }
 
         div {
           margin: 200px 70px 50px;
@@ -89,6 +105,7 @@ html {
           margin: 0 auto;
           width: 100%;
           background-color: white;
+          box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
 
           article {
             margin: 0 auto;
@@ -245,6 +262,125 @@ html {
             article {
               width: 100%;
               box-sizing: border-box;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 700px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          height: auto;
+          margin-bottom: 250px;
+        }
+
+        #contact {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 600px) {
+  .inline-content {
+    display: block;
+  }
+}
+
+@media all and (max-width: 680px), (max-height: 650px) {
+  html {
+    body {
+      #wrapper {
+        nav.opened {
+          width: 100% !important;
+        }
+
+        section {
+          height: auto;
+
+          .content-container {
+            article {
+              width: 100%;
+              box-sizing: border-box;
+            }
+          }
+        }
+
+        #starter {
+          #quote {
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            text-align: justify;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 25px;
+          }
+
+          #author {
+            font-size: 1rem;
+            margin: 0 25px;
+            text-align: right;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 25px 0 0;
+          }
+        }
+
+        #about-me {
+          img {
+            margin-top: 50px;
+          }
+        }
+
+        #contact {
+          margin-bottom: 0;
+
+          .content-container {
+            article {
+              #links {
+                margin-top: 150px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 450px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          height: auto;
+          margin-bottom: 250px;
+        }
+
+        #contact {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 650px) {
+  html {
+    body {
+      #wrapper {
+        nav {
+          div {
+            margin: 80px 70px 50px;
+
+            a {
+              margin: 25px 50px;
             }
           }
         }

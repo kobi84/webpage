@@ -38,13 +38,24 @@ function init() {
   const menuIconElem = document.getElementById('menu-icon');
   const sideNavElem = document.getElementById('side-nav');
   let sideNabarShown = false;
+
+  sideNavElem.addEventListener('click', () => {
+    sideNavElem.classList.remove('opened');
+    menuIconElem.classList.remove('clicked');
+    menuIconElem.classList.remove('la-times-circle');
+    menuIconElem.classList.add('la-bars');
+    sideNabarShown = false;
+  });
+
   menuIconElem.addEventListener('click', () => {
     if (sideNabarShown) {
-      sideNavElem.style.width = 0;
+      sideNavElem.classList.remove('opened');
+      menuIconElem.classList.remove('clicked');
       menuIconElem.classList.remove('la-times-circle');
       menuIconElem.classList.add('la-bars');
     } else {
-      sideNavElem.style.width = '350px';
+      sideNavElem.classList.add('opened');
+      menuIconElem.classList.add('clicked');
       menuIconElem.classList.add('la-times-circle');
       menuIconElem.classList.remove('la-bars');
     }
