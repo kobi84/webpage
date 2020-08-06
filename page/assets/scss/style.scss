@@ -10,6 +10,7 @@ html {
     height: 100%;
     overflow: auto;
     color: white;
+    line-height: 1.2rem;
   }
 
   body {
@@ -20,6 +21,7 @@ html {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    scroll-behavior: smooth;
 
     div,
     p {
@@ -31,6 +33,52 @@ html {
       height: 100%;
       width: 100%;
 
+      #menu-icon {
+        visibility: hidden;
+        opacity: 0;
+        color: white;
+        font-size: 32px;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        z-index: 10;
+      }
+
+      #menu-icon:hover {
+        color: rgb(216, 216, 216);
+      }
+
+      nav {
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #171717;
+        color: white;
+        overflow: hidden;
+        transition: 500ms;
+        z-index: 9;
+
+        div {
+          margin: 200px 70px 50px;
+
+          a {
+            margin: 70px 50px;
+            display: block;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            white-space: nowrap;
+
+            &:hover {
+              text-decoration: underline;
+              color: rgb(173, 173, 173);
+            }
+          }
+        }
+      }
+
       section {
         opacity: 0;
         transition: opacity 0.5s linear;
@@ -38,15 +86,19 @@ html {
         width: 100%;
 
         .content-container {
-          text-align: center;
           margin: 0 auto;
           width: 100%;
           background-color: white;
 
           article {
+            margin: 0 auto;
+            padding: 50px;
             color: #373737;
-            margin: 50px;
-            width: 900px;
+            width: 800px;
+
+            h1 {
+              margin-top: 0;
+            }
           }
         }
       }
@@ -71,12 +123,65 @@ html {
         }
       }
 
+      #skills {
+        ul {
+          margin: 0;
+          padding: 10px 10px 0 0;
+          list-style: none;
+
+          li {
+            margin-bottom: 15px;
+
+            span,
+            svg {
+              vertical-align: middle;
+              font-size: 2.6rem;
+              padding: 0 15px 0 0;
+            }
+
+            svg.extjs {
+              margin: 0 4px;
+              font-size: 2.2rem;
+            }
+          }
+        }
+      }
+
       #contact {
         .content-container {
           background-color: #171717;
 
           article {
             color: white;
+
+            #keywords {
+              p {
+                margin: 25px;
+              }
+            }
+
+            #links {
+              min-height: 150px;
+
+              * {
+                text-align: right;
+              }
+
+              a {
+                color: white;
+
+                span {
+                  margin-left: 15px;
+                  font-size: 2rem;
+                }
+              }
+
+              a:last-child {
+                span {
+                  font-size: 1.9rem;
+                }
+              }
+            }
           }
         }
       }
@@ -87,21 +192,6 @@ html {
       margin-top: 20%;
     }
   }
-}
-
-#menu-icon {
-  visibility: hidden;
-  opacity: 0;
-  color: white;
-  font-size: 32px;
-  transition: all 0.25s linear;
-  position: fixed;
-  top: 25px;
-  left: 25px;
-}
-
-#menu-icon:hover {
-  font-size: 34px;
 }
 
 .base-content {
@@ -122,4 +212,43 @@ html {
   justify-content: flex-end;
 }
 
+.inline-content {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
+.inline-content-left {
+  @extend .inline-content;
+
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.column-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mt-75 {
+  margin-top: 75px;
+}
+
+@media all and (max-width: 800px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          .content-container {
+            article {
+              width: 100%;
+              box-sizing: border-box;
+            }
+          }
+        }
+      }
+    }
+  }
+}

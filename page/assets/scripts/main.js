@@ -9,8 +9,11 @@
 function init() {
   const bgImageElem = document.getElementById('bgImg');
 
+  const currentYearElem = document.getElementById('currentYear');
+  currentYearElem.innerHTML = new Date().getFullYear();
+
   bgImageElem.addEventListener('load', function () {
-    const bodyrElem = document.body
+    const bodyrElem = document.body;
     bodyrElem.style.opacity = 0;
     bodyrElem.style.transition = 'opacity 0.5s linear';
     bodyrElem.style.backgroundImage = `url('${this.src}')`;
@@ -30,6 +33,23 @@ function init() {
         elem.style.opacity = 1;
       });
     });
+  });
+
+  const menuIconElem = document.getElementById('menu-icon');
+  const sideNavElem = document.getElementById('side-nav');
+  let sideNabarShown = false;
+  menuIconElem.addEventListener('click', () => {
+    if (sideNabarShown) {
+      sideNavElem.style.width = 0;
+      menuIconElem.classList.remove('la-times-circle');
+      menuIconElem.classList.add('la-bars');
+    } else {
+      sideNavElem.style.width = '350px';
+      menuIconElem.classList.add('la-times-circle');
+      menuIconElem.classList.remove('la-bars');
+    }
+
+    sideNabarShown = !sideNabarShown;
   });
 }
 
