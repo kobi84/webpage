@@ -77,10 +77,11 @@ html {
         }
 
         div {
-          margin: 200px 70px 50px;
+          margin: 60px 70px 50px;
 
           a {
-            margin: 70px 50px;
+            margin: 0 50px;
+            padding: 50px 0;
             display: block;
             color: white;
             font-size: 1.2rem;
@@ -275,7 +276,7 @@ html {
     body {
       #wrapper {
         section {
-          height: auto;
+          height: fit-content;
           margin-bottom: 250px;
         }
 
@@ -302,7 +303,6 @@ html {
         }
 
         section {
-          height: auto;
 
           .content-container {
             article {
@@ -316,7 +316,7 @@ html {
           #quote {
             font-size: 1.5rem;
             line-height: 1.5rem;
-            text-align: justify;
+            text-align: center;
             width: 100%;
             box-sizing: border-box;
             padding: 0 25px;
@@ -325,7 +325,7 @@ html {
           #author {
             font-size: 1rem;
             margin: 0 25px;
-            text-align: right;
+            text-align: center;
             width: 100%;
             box-sizing: border-box;
             padding: 10px 25px 0 0;
@@ -354,24 +354,7 @@ html {
   }
 }
 
-@media all and (max-height: 450px) {
-  html {
-    body {
-      #wrapper {
-        section {
-          height: auto;
-          margin-bottom: 250px;
-        }
-
-        #contact {
-          margin-bottom: 0;
-        }
-      }
-    }
-  }
-}
-
-@media all and (max-height: 650px) {
+@media all and (max-height: 600px) {
   html {
     body {
       #wrapper {
@@ -380,9 +363,46 @@ html {
             margin: 80px 70px 50px;
 
             a {
-              margin: 25px 50px;
+              margin: 0 50px;
+              padding: 25px 0;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 400px) {
+  html {
+    body {
+      #wrapper {
+        nav {
+          div {
+            margin: 40px 70px 50px;
+
+            a {
+              margin: 0 50px;
+              padding: 15px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 450px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          height: fit-content;
+          margin-bottom: 250px;
+        }
+
+        #contact {
+          margin-bottom: 0;
         }
       }
     }

@@ -35,6 +35,10 @@ function init() {
     });
   });
 
+  if (bgImageElem.complete) {
+    bgImageElem.dispatchEvent(new Event('load'));
+  }
+
   const menuIconElem = document.getElementById('menu-icon');
   const sideNavElem = document.getElementById('side-nav');
   let sideNabarShown = false;
