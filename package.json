@@ -6,6 +6,7 @@
   "scripts": {
     "gulp": "node_modules/gulp/bin/gulp.js",
     "gulp-cli": "node_modules/gulp-cli/bin/gulp.js",
+    "clean-distrib": "gulp clean-distrib",
     "start-dev": "gulp start-dev",
     "build-dev": "gulp build-dev",
     "build-prod": "gulp build-prod",
@@ -17,7 +18,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier && npm run eslint && npm run stylelint"
+      "pre-commit": "npm run clean-distrib && npm run prettier && npm run eslint && npm run stylelint"
     }
   },
   "repository": {

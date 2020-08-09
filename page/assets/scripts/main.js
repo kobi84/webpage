@@ -20,7 +20,6 @@ function init() {
     bodyrElem.style.opacity = 1;
 
     const loaderElem = document.getElementById('loader');
-    loaderElem.style.opacity = 0;
     loaderElem.addEventListener('transitionend', function () {
       this.style.display = 'none';
       const menuElem = document.getElementById('menu-icon');
@@ -33,6 +32,9 @@ function init() {
         elem.style.opacity = 1;
       });
     });
+    setTimeout(() => {
+      loaderElem.style.opacity = 0;
+    }, 0);
   });
 
   if (bgImageElem.complete) {

@@ -8,6 +8,7 @@ html {
     margin: 0;
     padding: 0;
     height: 100%;
+    height: 100vh;
     overflow: auto;
     color: white;
     line-height: 1.2rem;
@@ -31,6 +32,7 @@ html {
 
     #wrapper {
       height: 100%;
+      height: 100vh;
       width: 100%;
 
       #menu-icon {
@@ -100,6 +102,7 @@ html {
         opacity: 0;
         transition: opacity 0.5s linear;
         height: 100%;
+        height: 100vh;
         width: 100%;
 
         .content-container {
@@ -123,6 +126,7 @@ html {
 
       #starter {
         height: 100%;
+        height: 100vh;
 
         #quote {
           @extend .black-bold-font;
@@ -254,17 +258,24 @@ html {
   margin-top: 75px;
 }
 
-@media all and (max-width: 800px) {
+@media all and (max-width: 900px) {
   html {
     body {
       #wrapper {
         section {
+          height: auto;
+          margin-bottom: 250px;
+
           .content-container {
             article {
               width: 100%;
               box-sizing: border-box;
             }
           }
+        }
+
+        #contact {
+          margin-bottom: 0;
         }
       }
     }
@@ -276,7 +287,7 @@ html {
     body {
       #wrapper {
         section {
-          height: fit-content;
+          height: auto;
           margin-bottom: 250px;
         }
 
@@ -294,7 +305,7 @@ html {
   }
 }
 
-@media all and (max-width: 680px), (max-height: 650px) {
+@media all and (max-width: 680px) {
   html {
     body {
       #wrapper {
@@ -303,6 +314,8 @@ html {
         }
 
         section {
+          height: auto;
+
           .content-container {
             article {
               width: 100%;
@@ -339,14 +352,6 @@ html {
 
         #contact {
           margin-bottom: 0;
-
-          .content-container {
-            article {
-              #links {
-                margin-top: 150px;
-              }
-            }
-          }
         }
       }
     }
@@ -365,6 +370,17 @@ html {
               margin: 0 50px;
               padding: 25px 0;
             }
+          }
+        }
+
+        #starter {
+          #quote {
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+          }
+
+          #author {
+            font-size: 1rem;
           }
         }
       }
@@ -396,12 +412,29 @@ html {
     body {
       #wrapper {
         section {
-          height: fit-content;
           margin-bottom: 250px;
         }
 
         #contact {
           margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 400px) {
+  html {
+    body {
+      #wrapper {
+        #contact {
+          .content-container {
+            article {
+              #links {
+                margin-top: 70px;
+              }
+            }
+          }
         }
       }
     }
