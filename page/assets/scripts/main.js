@@ -19,30 +19,32 @@ function setCurrentYearInFooter() {
 
 function initPageTransistions() {
   const bgImageElem = document.getElementById('bgImg');
-  bgImageElem.addEventListener('load', function () {
-    const bodyrElem = document.body;
-    bodyrElem.style.opacity = 0;
-    bodyrElem.style.transition = 'opacity 0.5s linear';
-    bodyrElem.style.backgroundImage = `url('${this.src}')`;
-    bodyrElem.style.opacity = 1;
+  const bodyrElem = document.body;
+  const loaderElem = document.getElementById('loader');
+  const menuElem = document.getElementById('menu-icon');
+  const scrollElem = document.getElementById('scroll-icon');
 
-    const loaderElem = document.getElementById('loader');
-    loaderElem.addEventListener('transitionend', function () {
-      this.style.display = 'none';
-      const menuElem = document.getElementById('menu-icon');
-      menuElem.style.visibility = 'visible';
-      menuElem.style.opacity = 1;
+  bgImageElem.addEventListener('load', () => {
+    changeOpacity(bodyrElem, 0);
+    bodyrElem.style.transition = 'opacity 0.5s linear';
+    bodyrElem.style.backgroundImage = `url('${bgImageElem.src}')`;
+    changeOpacity(bodyrElem, 1);
+
+    loaderElem.addEventListener('transitionend', () => {
+      loaderElem.style.display = 'none';
+      showElement(menuElem);
+      showElement(scrollElem);
+      initScrollIcon();
 
       const sectionElems = Array.from(document.querySelectorAll('section'));
       sectionElems.forEach((elem) => {
-        elem.style.visibility = 'visible';
-        elem.style.opacity = 1;
+        showElement(elem);
       });
     });
     /* Wrapp in timeout to workaround bug in Safari when Safari optimise transistions
    and  transitionend is not fired on loaderElem */
     setTimeout(() => {
-      loaderElem.style.opacity = 0;
+      changeOpacity(loaderElem, 0);
     }, 0);
   });
 
@@ -77,6 +79,35 @@ function initNavBar() {
 
     sideNabarShown = !sideNabarShown;
   });
+}
+
+
+function initScrollIcon() {
+  const scrollElem = document.getElementById('scroll-icon');
+  const observer = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      changeOpacity(scrollElem,  1);
+    } else {
+      changeOpacity(scrollElem, 0);
+    }
+    },{
+      root: null,
+      rootMargin: "0px 0px 50px 0px",
+      threshhold: 0,
+    });
+
+    observer.observe(document.querySelector("#top"));
+}
+
+
+function showElement(elem) {
+  elem.style.visibility = 'visible';
+  changeOpacity(elem, 1);
+}
+
+
+function changeOpacity(elem, value) {
+  elem.style.opacity = value;
 }
 
 function documentReady(func) {

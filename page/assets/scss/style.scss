@@ -30,6 +30,10 @@ html {
       margin: 0;
     }
 
+    #top {
+      height: 0;
+    }
+
     #wrapper {
       height: 100%;
       height: 100vh;
@@ -211,6 +215,23 @@ html {
             }
           }
         }
+      }
+
+      #scroll-icon {
+        visibility: hidden;
+        opacity: 0;
+        color: #171717;
+        font-size: 32px;
+        position: fixed;
+        bottom: 35px;
+        left: 50%;
+        z-index: 10;
+        background-color: white;
+        border-radius: 25px;
+        padding: 5px;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
+        transition: opacity 0.5s linear;
+        animation: bouceVertically 1s ease 1.5s infinite normal;
       }
     }
 
@@ -444,4 +465,12 @@ html {
       }
     }
   }
+}
+
+@keyframes bouceVertically {
+  0% { bottom: 35px;}
+  25% {bottom: 30px;}
+  50% {bottom: 25px;}
+  75% {bottom: 30px;}
+  100% {bottom: 35px;}
 }
