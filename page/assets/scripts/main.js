@@ -7,11 +7,18 @@
 })();
 
 function init() {
-  const bgImageElem = document.getElementById('bgImg');
+  setCurrentYearInFooter();
+  initPageTransistions();
+  initNavBar();
+}
 
+function setCurrentYearInFooter() {
   const currentYearElem = document.getElementById('currentYear');
   currentYearElem.innerHTML = new Date().getFullYear();
+}
 
+function initPageTransistions() {
+  const bgImageElem = document.getElementById('bgImg');
   bgImageElem.addEventListener('load', function () {
     const bodyrElem = document.body;
     bodyrElem.style.opacity = 0;
@@ -32,23 +39,27 @@ function init() {
         elem.style.opacity = 1;
       });
     });
+    /* Wrapp in timeout to workaround bug in Safari when Safari optimise transistions
+   and  transitionend is not fired on loaderElem */
     setTimeout(() => {
       loaderElem.style.opacity = 0;
     }, 0);
   });
 
+  // Fire event load for cached images
   if (bgImageElem.complete) {
     bgImageElem.dispatchEvent(new Event('load'));
   }
+}
 
+function initNavBar() {
   const menuIconElem = document.getElementById('menu-icon');
   const sideNavElem = document.getElementById('side-nav');
   let sideNabarShown = false;
 
   sideNavElem.addEventListener('click', () => {
     sideNavElem.classList.remove('opened');
-    menuIconElem.classList.remove('clicked');
-    menuIconElem.classList.remove('la-times-circle');
+    menuIconElem.classList.remove(['clicked', 'la-times-circle']);
     menuIconElem.classList.add('la-bars');
     sideNabarShown = false;
   });
@@ -56,13 +67,11 @@ function init() {
   menuIconElem.addEventListener('click', () => {
     if (sideNabarShown) {
       sideNavElem.classList.remove('opened');
-      menuIconElem.classList.remove('clicked');
-      menuIconElem.classList.remove('la-times-circle');
+      menuIconElem.classList.remove(['clicked', 'la-times-circle']);
       menuIconElem.classList.add('la-bars');
     } else {
       sideNavElem.classList.add('opened');
-      menuIconElem.classList.add('clicked');
-      menuIconElem.classList.add('la-times-circle');
+      menuIconElem.classList.add(['clicked', 'la-times-circle']);
       menuIconElem.classList.remove('la-bars');
     }
 
@@ -71,7 +80,8 @@ function init() {
 }
 
 function documentReady(func) {
-  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  const readyState = document.readyState;
+  if (readyState === 'complete' || readyState === 'interactive') {
     func.call();
   } else {
     document.addEventListener('DOMContentLoaded', func);
