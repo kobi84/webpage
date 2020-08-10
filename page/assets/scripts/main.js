@@ -81,30 +81,30 @@ function initNavBar() {
   });
 }
 
-
 function initScrollIcon() {
   const scrollElem = document.getElementById('scroll-icon');
-  const observer = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      changeOpacity(scrollElem,  1);
-    } else {
-      changeOpacity(scrollElem, 0);
-    }
-    },{
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (entries[0].isIntersecting) {
+        changeOpacity(scrollElem, 1);
+      } else {
+        changeOpacity(scrollElem, 0);
+      }
+    },
+    {
       root: null,
-      rootMargin: "0px 0px 50px 0px",
+      rootMargin: '0px 0px 50px 0px',
       threshhold: 0,
-    });
+    }
+  );
 
-    observer.observe(document.querySelector("#top"));
+  observer.observe(document.querySelector('#top'));
 }
-
 
 function showElement(elem) {
   elem.style.visibility = 'visible';
   changeOpacity(elem, 1);
 }
-
 
 function changeOpacity(elem, value) {
   elem.style.opacity = value;
