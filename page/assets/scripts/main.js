@@ -57,26 +57,22 @@ function initPageTransistions() {
 function initNavBar() {
   const menuIconElem = document.getElementById('menu-icon');
   const sideNavElem = document.getElementById('side-nav');
+  const toggleMenuClasses = () => {
+    sideNavElem.classList.toggle('opened');
+    menuIconElem.classList.toggle('clicked');
+    menuIconElem.classList.toggle('la-times-circle');
+    menuIconElem.classList.toggle('la-bars');
+  };
+
   let sideNabarShown = false;
 
   sideNavElem.addEventListener('click', () => {
-    sideNavElem.classList.remove('opened');
-    menuIconElem.classList.remove(['clicked', 'la-times-circle']);
-    menuIconElem.classList.add('la-bars');
+    toggleMenuClasses();
     sideNabarShown = false;
   });
 
   menuIconElem.addEventListener('click', () => {
-    if (sideNabarShown) {
-      sideNavElem.classList.remove('opened');
-      menuIconElem.classList.remove(['clicked', 'la-times-circle']);
-      menuIconElem.classList.add('la-bars');
-    } else {
-      sideNavElem.classList.add('opened');
-      menuIconElem.classList.add(['clicked', 'la-times-circle']);
-      menuIconElem.classList.remove('la-bars');
-    }
-
+    toggleMenuClasses();
     sideNabarShown = !sideNabarShown;
   });
 }
@@ -85,11 +81,7 @@ function initScrollIcon() {
   const scrollElem = document.getElementById('scroll-icon');
   const observer = new IntersectionObserver(
     (entries) => {
-      if (entries[0].isIntersecting) {
-        changeOpacity(scrollElem, 1);
-      } else {
-        changeOpacity(scrollElem, 0);
-      }
+      changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
     },
     {
       root: null,
@@ -110,11 +102,11 @@ function changeOpacity(elem, value) {
   elem.style.opacity = value;
 }
 
-function documentReady(func) {
+function documentReady(onDocReadyFunction) {
   const readyState = document.readyState;
   if (readyState === 'complete' || readyState === 'interactive') {
-    func.call();
+    onDocReadyFunction();
   } else {
-    document.addEventListener('DOMContentLoaded', func);
+    document.addEventListener('DOMContentLoaded', onDocReadyFunction);
   }
 }
