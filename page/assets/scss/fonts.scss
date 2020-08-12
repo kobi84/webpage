@@ -1,0 +1,48 @@
+@font-face {
+  font-family: Roboto-Thin;
+  src: url('../fonts/Roboto-Thin.ttf');
+}
+
+@font-face {
+  font-family: Roboto-ThinItalic;
+  src: url('../fonts/Roboto-ThinItalic.ttf');
+}
+
+@font-face {
+  font-family: Roboto-Light;
+  src: url('../fonts/Roboto-Light.ttf');
+}
+
+@font-face {
+  font-family: Roboto-LightItalic;
+  src: url('../fonts/Roboto-LightItalic.ttf');
+}
+
+@font-face {
+  font-family: RobotoSlab-Black;
+  src: url('../fonts/RobotoSlab-Black.ttf');
+}
+
+.regular-font-light {
+  font-family: 'Roboto-Light', 'URW Gothic L', 'Lucida Grande', 'Lucida Sans Unicode', 'Helvetica Neue', 'Sans',
+    sans-serif;
+}
+
+.regular-font-thin {
+  font-family: 'Roboto-Thin', 'URW Gothic L', 'Lucida Grande', 'Lucida Sans Unicode', 'Helvetica Neue', 'Sans',
+    sans-serif;
+}
+
+.regular-font-light-italic {
+  font-family: 'Roboto-LightItalic', 'URW Gothic L', 'Lucida Grande', 'Lucida Sans Unicode', 'Helvetica Neue', 'Sans',
+    sans-serif;
+}
+
+.regular-font-thin-italic {
+  font-family: 'Roboto-ThinItalic', 'URW Gothic L', 'Lucida Grande', 'Lucida Sans Unicode', 'Helvetica Neue', 'Sans',
+    sans-serif;
+}
+
+.black-bold-font {
+  font-family: 'RobotoSlab-Black', sans-serif;
+}
