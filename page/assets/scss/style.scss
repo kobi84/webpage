@@ -1,0 +1,486 @@
+@import 'fonts';
+
+html {
+  background: black;
+
+  &,
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    height: 100vh;
+    overflow: auto;
+    color: white;
+    line-height: 1.2rem;
+  }
+
+  body {
+    @extend .regular-font-light;
+
+    background: black no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    scroll-behavior: smooth;
+
+    div,
+    p {
+      padding: 0;
+      margin: 0;
+    }
+
+    #top {
+      height: 0;
+    }
+
+    #wrapper {
+      height: 100%;
+      height: 100vh;
+      width: 100%;
+
+      #menu-icon {
+        visibility: hidden;
+        opacity: 0;
+        color: #171717;
+        font-size: 32px;
+        position: fixed;
+        top: 25px;
+        left: 25px;
+        z-index: 10;
+        background-color: white;
+        border-radius: 25px;
+        padding: 5px;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
+
+        &.clicked {
+          color: white;
+          background-color: transparent;
+          box-shadow: none;
+          border-radius: 0;
+        }
+      }
+
+      #menu-icon:hover {
+        color: rgb(216, 216, 216);
+      }
+
+      nav {
+        width: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        background-color: #171717;
+        color: white;
+        overflow: hidden;
+        transition: 500ms;
+        z-index: 9;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
+
+        &.opened {
+          width: 350px;
+        }
+
+        div {
+          margin: 60px 70px 50px;
+
+          a {
+            margin: 0 50px;
+            padding: 50px 0;
+            display: block;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            white-space: nowrap;
+
+            &:hover {
+              text-decoration: underline;
+              color: rgb(173, 173, 173);
+            }
+          }
+        }
+      }
+
+      section {
+        opacity: 0;
+        transition: opacity 0.5s linear;
+        height: 100%;
+        height: 100vh;
+        width: 100%;
+        // Fix bug in Safari Mobile when content was cliped
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -webkit-transform: translate3d(0, 0, 0);
+        -moz-transform: translate3d(0, 0, 0);
+
+        .content-container {
+          margin: 0 auto;
+          width: 100%;
+          background-color: white;
+          box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
+
+          article {
+            margin: 0 auto;
+            padding: 50px;
+            color: #373737;
+            width: 800px;
+
+            h1 {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+
+      #starter {
+        height: 100%;
+        height: 100vh;
+
+        #quote {
+          @extend .black-bold-font;
+
+          font-size: 3rem;
+          width: 50%;
+          text-align: justify;
+          line-height: 4rem;
+        }
+
+        #author {
+          font-size: 1.1rem;
+          width: 50%;
+          padding-top: 10px;
+          text-align: right;
+        }
+      }
+
+      #skills {
+        ul {
+          margin: 0;
+          padding: 10px 10px 0 0;
+          list-style: none;
+
+          li {
+            margin-bottom: 15px;
+
+            span,
+            svg {
+              vertical-align: middle;
+              font-size: 2.6rem;
+              padding: 0 15px 0 0;
+            }
+
+            svg.extjs {
+              margin: 0 4px;
+              font-size: 2.2rem;
+            }
+          }
+        }
+      }
+
+      #contact {
+        .content-container {
+          background-color: #171717;
+
+          article {
+            color: white;
+
+            #keywords {
+              p {
+                margin: 25px;
+              }
+            }
+
+            #links {
+              min-height: 150px;
+
+              * {
+                text-align: right;
+              }
+
+              a {
+                color: white;
+
+                span {
+                  margin-left: 15px;
+                  font-size: 2rem;
+                }
+              }
+
+              a:last-child {
+                span {
+                  font-size: 1.9rem;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      #scroll-icon {
+        visibility: hidden;
+        opacity: 0;
+        color: #171717;
+        font-size: 32px;
+        position: fixed;
+        bottom: 35px;
+        left: 50%;
+        z-index: 10;
+        background-color: white;
+        border-radius: 25px;
+        padding: 5px;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
+        transition: opacity 0.5s linear;
+        animation: bouceVertically 1s ease 1.5s infinite normal;
+      }
+    }
+
+    .noScript {
+      text-align: center;
+      margin-top: 20%;
+    }
+  }
+}
+
+.base-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.center-content {
+  @extend .base-content;
+
+  justify-content: center;
+}
+
+.bottom-content {
+  @extend .base-content;
+
+  justify-content: flex-end;
+}
+
+.inline-content {
+  display: flex;
+  align-content: space-between;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.inline-content-left {
+  @extend .inline-content;
+
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.column-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.mt-75 {
+  margin-top: 75px;
+}
+
+@media all and (max-width: 900px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          height: auto;
+          margin-bottom: 250px;
+
+          .content-container {
+            article {
+              width: 100%;
+              box-sizing: border-box;
+            }
+          }
+        }
+
+        #contact {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 700px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          height: auto;
+          margin-bottom: 250px;
+        }
+
+        #contact {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 600px) {
+  .inline-content {
+    display: block;
+  }
+}
+
+@media all and (max-width: 680px) {
+  html {
+    body {
+      #wrapper {
+        nav.opened {
+          width: 100% !important;
+        }
+
+        section {
+          height: auto;
+
+          .content-container {
+            article {
+              width: 100%;
+              box-sizing: border-box;
+            }
+          }
+        }
+
+        #starter {
+          #quote {
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0 25px;
+          }
+
+          #author {
+            font-size: 1rem;
+            margin: 0 25px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 25px 0 0;
+          }
+        }
+
+        #about-me {
+          img {
+            margin-top: 50px;
+          }
+        }
+
+        #contact {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 600px) {
+  html {
+    body {
+      #wrapper {
+        nav {
+          div {
+            margin: 80px 70px 50px;
+
+            a {
+              margin: 0 50px;
+              padding: 25px 0;
+            }
+          }
+        }
+
+        #starter {
+          #quote {
+            font-size: 1.5rem;
+            line-height: 1.5rem;
+          }
+
+          #author {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 400px) {
+  html {
+    body {
+      #wrapper {
+        nav {
+          div {
+            margin: 40px 70px 50px;
+
+            a {
+              margin: 0 50px;
+              padding: 15px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-height: 450px) {
+  html {
+    body {
+      #wrapper {
+        section {
+          margin-bottom: 250px;
+        }
+
+        #contact {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@media all and (max-width: 400px) {
+  html {
+    body {
+      #wrapper {
+        #contact {
+          .content-container {
+            article {
+              #links {
+                margin-top: 70px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes bouceVertically {
+  0% {
+    bottom: 35px;
+  }
+  25% {
+    bottom: 30px;
+  }
+  50% {
+    bottom: 25px;
+  }
+  75% {
+    bottom: 30px;
+  }
+  100% {
+    bottom: 35px;
+  }
+}
