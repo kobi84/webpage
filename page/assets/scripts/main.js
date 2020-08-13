@@ -79,18 +79,24 @@ function initNavBar() {
 
 function initScrollIcon() {
   const scrollElem = document.getElementById('scroll-icon');
-  const observer = new IntersectionObserver(
-    (entries) => {
-      changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
-    },
-    {
-      root: null,
-      rootMargin: '0px 0px 50px 0px',
-      threshhold: 0,
-    }
-  );
 
-  observer.observe(document.querySelector('#top'));
+  if (window.IntersectionObserver) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
+      },
+      {
+        root: null,
+        rootMargin: '0px 0px 50px 0px',
+        threshhold: 0,
+      }
+    );
+
+    observer.observe(document.querySelector('#top'));
+    scrollElem.addEventListener('click', () => document.getElementById('about-me').scrollIntoView());
+  } else {
+    scrollElem.style.display = 'none';
+  }
 }
 
 function showElement(elem) {
