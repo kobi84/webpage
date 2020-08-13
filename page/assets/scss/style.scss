@@ -53,16 +53,17 @@ html {
         padding: 5px;
         box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
 
+        &:hover {
+          color: rgb(216, 216, 216);
+          cursor: pointer;
+        }
+
         &.clicked {
           color: white;
           background-color: transparent;
           box-shadow: none;
           border-radius: 0;
         }
-      }
-
-      #menu-icon:hover {
-        color: rgb(216, 216, 216);
       }
 
       nav {
@@ -232,6 +233,11 @@ html {
         box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
         transition: opacity 0.5s linear;
         animation: bouceVertically 1s ease 1.5s infinite normal;
+
+        &:hover {
+          color: rgb(216, 216, 216);
+          cursor: pointer;
+        }
       }
     }
 
