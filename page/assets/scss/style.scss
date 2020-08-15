@@ -40,23 +40,8 @@ html {
       width: 100%;
 
       #menu-icon {
-        visibility: hidden;
-        opacity: 0;
-        color: #171717;
-        font-size: 32px;
-        position: fixed;
         top: 25px;
         left: 25px;
-        z-index: 10;
-        background-color: white;
-        border-radius: 25px;
-        padding: 5px;
-        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
-
-        &:hover {
-          color: rgb(216, 216, 216);
-          cursor: pointer;
-        }
 
         &.clicked {
           color: white;
@@ -103,9 +88,32 @@ html {
         }
       }
 
-      section {
+      #fast-contact {
+        @extend .opacity-transition;
+
+        position: fixed;
+        top: 25px;
+        right: 50px;
+        z-index: 5;
+        visibility: hidden;
         opacity: 0;
-        transition: opacity 0.5s linear;
+
+        a {
+          @extend .round-icon;
+
+          height: 32px;
+          position: relative !important;
+          opacity: 1 !important;
+          visibility: visible !important;
+          display: inline-block;
+          margin-left: 15px;
+        }
+      }
+
+      section {
+        @extend .opacity-transition;
+
+        opacity: 0;
         height: 100%;
         height: 100vh;
         width: 100%;
@@ -121,6 +129,12 @@ html {
           background-color: white;
           box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
 
+          .article-transition {
+            transition: opacity 1s linear;
+            visibility: hidden;
+            opacity: 0;
+          }
+
           article {
             margin: 0 auto;
             padding: 50px;
@@ -128,6 +142,7 @@ html {
             width: 800px;
 
             h1 {
+              font-size: 1.5rem;
               margin-top: 0;
             }
           }
@@ -219,25 +234,9 @@ html {
       }
 
       #scroll-icon {
-        visibility: hidden;
-        opacity: 0;
-        color: #171717;
-        font-size: 32px;
-        position: fixed;
         bottom: 35px;
         left: 50%;
-        z-index: 10;
-        background-color: white;
-        border-radius: 25px;
-        padding: 5px;
-        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
-        transition: opacity 0.5s linear;
         animation: bouceVertically 1s ease 1.5s infinite normal;
-
-        &:hover {
-          color: rgb(216, 216, 216);
-          cursor: pointer;
-        }
       }
     }
 
@@ -288,6 +287,30 @@ html {
 
 .mt-75 {
   margin-top: 75px;
+}
+
+.opacity-transition {
+  transition: opacity 0.5s linear;
+}
+
+.round-icon {
+  @extend .opacity-transition;
+
+  visibility: hidden;
+  opacity: 0;
+  color: #171717;
+  font-size: 32px;
+  position: fixed;
+  z-index: 10;
+  background-color: white;
+  border-radius: 25px;
+  padding: 5px;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    color: rgb(216, 216, 216);
+    cursor: pointer;
+  }
 }
 
 @media all and (max-width: 900px) {
