@@ -85,12 +85,10 @@ function initScrollIcon() {
   const fastContactElem = getFastContactElem();
 
   if (window.IntersectionObserver) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
-        changeOpacity(fastContactElem, entries[0].isIntersecting ? 1 : 0);
-      }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
+      changeOpacity(fastContactElem, entries[0].isIntersecting ? 1 : 0);
+    });
 
     observer.observe(document.querySelector('#top'));
     scrollElem.addEventListener('click', () => document.getElementById('about-me').scrollIntoView());
@@ -104,33 +102,33 @@ function initArticlesTransitions() {
   const sections = getMainSections();
   const articles = [];
 
-  sections.forEach(section => {
+  sections.forEach((section) => {
     const sectionArticles = section.getElementsByTagName('article');
     if (sectionArticles.length) {
-      Array.from(sectionArticles).forEach(article => articles.push(article));
+      Array.from(sectionArticles).forEach((article) => articles.push(article));
     }
   });
 
   if (window.IntersectionObserver) {
-    articles.forEach(article => article.classList.add('article-transition'));
+    articles.forEach((article) => article.classList.add('article-transition'));
 
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach(entry => {
-          if(entry.intersectionRatio > 0) {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0) {
             showElement(entry.target);
             observer.unobserve(entry.target);
           }
         });
       },
       {
-        threshhold: 0.5
+        threshhold: 0.5,
       }
     );
 
-    articles.forEach(article => observer.observe(article));
+    articles.forEach((article) => observer.observe(article));
   } else {
-      articles.forEach(article => showElement(article));
+    articles.forEach((article) => showElement(article));
   }
 }
 
