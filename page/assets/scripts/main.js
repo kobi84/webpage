@@ -21,8 +21,9 @@ function initPageTransistions() {
   const bgImageElem = document.getElementById('bgImg');
   const bodyrElem = document.body;
   const loaderElem = document.getElementById('loader');
-  const menuElem = document.getElementById('menu-icon');
-  const scrollElem = document.getElementById('scroll-icon');
+  const menuElem = getMenuIcon();
+  const fastContactElem = getFastContactElem();
+  const scrollElem = getScrollIcon();
 
   bgImageElem.addEventListener('load', () => {
     changeOpacity(bodyrElem, 0);
@@ -34,9 +35,11 @@ function initPageTransistions() {
       loaderElem.style.display = 'none';
       showElement(menuElem);
       showElement(scrollElem);
+      showElement(fastContactElem);
       initScrollIcon();
+      initArticlesTransitions();
 
-      const sectionElems = Array.from(document.querySelectorAll('section'));
+      const sectionElems = getMainSections();
       sectionElems.forEach((elem) => {
         showElement(elem);
       });
@@ -55,7 +58,7 @@ function initPageTransistions() {
 }
 
 function initNavBar() {
-  const menuIconElem = document.getElementById('menu-icon');
+  const menuIconElem = getMenuIcon();
   const sideNavElem = document.getElementById('side-nav');
   const toggleMenuClasses = () => {
     sideNavElem.classList.toggle('opened');
@@ -78,25 +81,71 @@ function initNavBar() {
 }
 
 function initScrollIcon() {
-  const scrollElem = document.getElementById('scroll-icon');
+  const scrollElem = getScrollIcon();
+  const fastContactElem = getFastContactElem();
 
   if (window.IntersectionObserver) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
-      },
-      {
-        root: null,
-        rootMargin: '0px 0px 50px 0px',
-        threshhold: 0,
-      }
-    );
+    const observer = new IntersectionObserver((entries) => {
+      changeOpacity(scrollElem, entries[0].isIntersecting ? 1 : 0);
+      changeOpacity(fastContactElem, entries[0].isIntersecting ? 1 : 0);
+    });
 
     observer.observe(document.querySelector('#top'));
     scrollElem.addEventListener('click', () => document.getElementById('about-me').scrollIntoView());
   } else {
-    scrollElem.style.display = 'none';
+    hideElement(scrollElem);
+    hideElement(fastContactElem);
   }
+}
+
+function initArticlesTransitions() {
+  const sections = getMainSections();
+  const articles = [];
+
+  sections.forEach((section) => {
+    const sectionArticles = section.getElementsByTagName('article');
+    if (sectionArticles.length) {
+      Array.from(sectionArticles).forEach((article) => articles.push(article));
+    }
+  });
+
+  if (window.IntersectionObserver) {
+    articles.forEach((article) => article.classList.add('article-transition'));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0) {
+            showElement(entry.target);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshhold: 0.5,
+      }
+    );
+
+    articles.forEach((article) => observer.observe(article));
+  } else {
+    articles.forEach((article) => showElement(article));
+  }
+}
+
+function getMainSections() {
+  return Array.from(document.querySelectorAll('section'));
+}
+
+function getMenuIcon() {
+  return document.getElementById('menu-icon');
+}
+
+function getScrollIcon() {
+  return document.getElementById('scroll-icon');
+}
+
+function getFastContactElem() {
+  return document.getElementById('fast-contact');
 }
 
 function showElement(elem) {
@@ -106,6 +155,10 @@ function showElement(elem) {
 
 function changeOpacity(elem, value) {
   elem.style.opacity = value;
+}
+
+function hideElement(elem) {
+  elem.style.display = 'none';
 }
 
 function documentReady(onDocReadyFunction) {
